@@ -20,6 +20,6 @@ public class GreetingController {
 
     @GetMapping("/greeting/{id}")
     public Greeting greeting(@PathVariable long id) {
-        return new Greeting(id, "ayamaaan!");
+        return new Greeting(id, "best best best!");
     }
 }
