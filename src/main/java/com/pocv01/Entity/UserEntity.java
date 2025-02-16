@@ -26,9 +26,16 @@ public class UserEntity {
 	private java.util.Date creationDate;
 	private java.util.Date modifyDate;
 	private String response;
+	private String role;
 	
 	
 	
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
+	}
 	public Long getId() {
 		return id;
 	}

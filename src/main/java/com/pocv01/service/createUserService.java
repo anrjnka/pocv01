@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.pocv01.Entity.UserEntity;
 import com.pocv01.model.Response;
+import com.pocv01.util.PasswordEncoderUtil;
 
 @Service
 public class createUserService {
@@ -14,6 +15,7 @@ public class createUserService {
   public Response addUser(UserEntity user) {
 	  user.setCreationDate(new java.sql.Date(System.currentTimeMillis()));
 	  user.setModifyDate(new java.sql.Date(System.currentTimeMillis()));
+	  user.setPassword(PasswordEncoderUtil.encodePassword(user.getPassword()));
 	  user.setResponse("test");
 	  userRepository.save(user); 
 	  
