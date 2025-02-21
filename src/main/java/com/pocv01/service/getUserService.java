@@ -31,5 +31,9 @@ public class getUserService {
     public List<UserEntity> getUsersByFilter(String isActive, String userId) {
         return userRepository.findUsersByStatusAndUserId(isActive, userId);
     }
+
+    public void deleteUserById(Long id){
+         userRepository.deleteByUserId(id);
+    }
 	
 }

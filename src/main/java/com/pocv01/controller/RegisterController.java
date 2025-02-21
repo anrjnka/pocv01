@@ -21,6 +21,7 @@ import com.pocv01.service.createUserService;
 import com.pocv01.service.userService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class RegisterController {
 	/*@GetMapping("/register")
