@@ -2,8 +2,10 @@ package com.pocv01.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.pocv01.Entity.UserEntity;
 
@@ -26,4 +28,10 @@ public interface userRepository extends  JpaRepository<UserEntity, Long>{
     List<UserEntity> findUsersByStatusAndUserId(String isActive, String userId);
 	
 	//return addUser.save(useEntity);
+
+    // Custom query to delete a user by userId
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM user_entity WHERE id = ?1", nativeQuery = true)
+    void deleteByUserId(Long id);
 }
