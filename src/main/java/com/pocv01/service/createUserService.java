@@ -1,5 +1,7 @@
 package com.pocv01.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +25,29 @@ public class createUserService {
       response.setStatus("success");
 	  return response;
   }	
+  
+  public Response updateUser(UserEntity userInput) {
+	  Optional<UserEntity> userOptional = userRepository.findById(userInput.getId());
+
+      if (userOptional.isPresent()) {
+          UserEntity user = userOptional.get();
+          user.setUserId(userInput.getUserId());
+          user.setModifyDate(new java.sql.Date(System.currentTimeMillis()));
+          userRepository.save(user);
+          
+          Response response = new Response();
+          response.setStatus("success");
+          
+    	  return response;
+      } else {
+          //throw new RuntimeException("User not found with id: " + id);
+          Response response = new Response();
+          response.setStatus("Failed User not found with id" + userInput.getUserId());
+    	  return response;
+      }
+  } 
+	  
+	  
+  
 
 }
