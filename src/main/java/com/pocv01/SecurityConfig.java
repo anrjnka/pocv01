@@ -22,7 +22,7 @@ public class SecurityConfig {
             .authorizeHttpRequests()
                 .requestMatchers("/api/login").permitAll() // Allow login without authentication
                 // .requestMatchers("/api/active").permitAll()
-                // .requestMatchers("/api/register").permitAll()
+                .requestMatchers("/api/register").permitAll()
                 // .requestMatchers("/api/delete/{id}").permitAll()
                 .anyRequest().authenticated() // Protect other endpoints
             .and()
