@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/jenisGudang")
 public class TblJenisGudangController {
 
@@ -61,8 +62,6 @@ public class TblJenisGudangController {
         	tblToUpdate.setIsActive(tbl.getIsActive());
         	tblToUpdate.setLastUpdatedDate(new java.util.Date()); // Set last updated date
         	tblToUpdate.setLastUpdatedBy("system"); // Set the last updated by (can be current user)
-        	tblToUpdate.setCreatedBy(tbl.getCreatedBy());
-        	tblToUpdate.setCreatedDate(tbl.getCreatedDate());
 
             // Save the updated catalogVendor and check if the save was successful
         	TblJenisGudang savedTbl = jenGudRepository.save(tblToUpdate);
@@ -97,8 +96,8 @@ public class TblJenisGudangController {
     }
 
     // POST method to get all jenis gudang
-    @PostMapping("/getAllJenisGudang")
-    public ResponseEntity<List<TblJenisGudang>> getAllSatuanBahan(@RequestBody Object requestBody) {
+    @GetMapping("/getAllJenisGudang")
+    public ResponseEntity<List<TblJenisGudang>> getAllSatuanBahan() {
         // This is a workaround to use POST for fetching data
         // The request body can be used to add any filters or additional parameters if necessary
         List<TblJenisGudang> tblList = jenGudRepository.findAll();

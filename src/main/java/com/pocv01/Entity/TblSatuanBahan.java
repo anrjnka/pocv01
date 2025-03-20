@@ -23,7 +23,7 @@ import jakarta.persistence.Table;
 	    private String namaSatuan;
 
 	    @Column(name = "isactive")
-	    private Boolean isActive;
+	    private String isActive;
 
 	    @Column(name = "createdby")
 	    private String createdBy;
@@ -54,11 +54,11 @@ import jakarta.persistence.Table;
 	        this.namaSatuan = namaSatuan;
 	    }
 
-	    public Boolean getIsActive() {
+	    public String getIsActive() {
 	        return isActive;
 	    }
 
-	    public void setIsActive(Boolean isActive) {
+	    public void setIsActive(String isActive) {
 	        this.isActive = isActive;
 	    }
 

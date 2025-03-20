@@ -18,6 +18,7 @@ public class TblBahan {
     private String packingbesar;
     private String packingsatuan;
     private String packingdetail;
+    private String codebahan;
     private Integer jumlah;
 	private String deskripsi;
     private Boolean isactive;
@@ -123,5 +124,13 @@ public class TblBahan {
 
     public void setLastupdateddate(Date lastupdateddate) {
         this.lastupdateddate = lastupdateddate;
+    }
+
+    public String getCodebahan() {
+        return codebahan;
+    }
+
+    public void setCodebahan(String codebahan) {
+        this.codebahan = codebahan;
     }
 }
