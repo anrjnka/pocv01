@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/bahan")
 public class TblBahanController {
 
@@ -56,6 +57,7 @@ public class TblBahanController {
         }
         try {
         TblBahan bahanToUpdate = existingBahan.get();
+        bahanToUpdate.setCodebahan(bahan.getCodebahan());
         bahanToUpdate.setNamabahan(bahan.getNamabahan());
         bahanToUpdate.setPackingbesar(bahan.getPackingbesar());
         bahanToUpdate.setPackingsatuan(bahan.getPackingsatuan());
@@ -96,8 +98,8 @@ public class TblBahanController {
     }
 
     // POST method to get all Bahan
-    @PostMapping("/getAllBahan")
-    public ResponseEntity<List<TblBahan>> getAllBahan(@RequestBody Object requestBody) {
+    @GetMapping("/getAllBahan")
+    public ResponseEntity<List<TblBahan>> getAllBahan() {
         // This is a workaround to use POST for fetching data
         // The request body can be used to add any filters or additional parameters if necessary
         List<TblBahan> bahanList = bahanRepository.findAll();

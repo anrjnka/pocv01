@@ -16,11 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pocv01.DTO.UserFilterDTO;
 import com.pocv01.Entity.UserEntity;
 import com.pocv01.service.getUserService;
-import com.pocv01.service.userService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class GetUserController {
 	
 	@Autowired
@@ -33,7 +32,7 @@ public class GetUserController {
     }
 
     // Get all active users
-    @GetMapping("/active")
+    @GetMapping("/getAllUser")
     public List<UserEntity> getActiveUsers() {
         return getUserService.getActiveUsers();
     }

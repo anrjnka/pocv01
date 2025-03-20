@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/vendor")
 public class TblVendorController {
 
@@ -97,8 +98,8 @@ public class TblVendorController {
     }
 
     // POST method to get all Vendor
-    @PostMapping("/getAllVendor")
-    public ResponseEntity<List<TblVendor>> getAllVendor(@RequestBody Object requestBody) {
+    @GetMapping("/getAllVendor")
+    public ResponseEntity<List<TblVendor>> getAllVendor() {
         // This is a workaround to use POST for fetching data
         // The request body can be used to add any filters or additional parameters if necessary
         List<TblVendor> vendorList = vendorRepository.findAll();

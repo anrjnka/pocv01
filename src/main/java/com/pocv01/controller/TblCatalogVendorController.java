@@ -6,21 +6,46 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.pocv01.Entity.TblCatalogVendor;
-import com.pocv01.Entity.TblGudang;
+import com.pocv01.App;
+import com.pocv01.Entity.TblBahan;
 import com.pocv01.model.Response;
 import com.pocv01.repository.tblCatalogVendorRepository;
-import com.pocv01.repository.tblGudangRepository;
+import com.pocv01.repository.tblBahanRepository;
 
-
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import com.pocv01.Entity.TblActive;
+import com.pocv01.Entity.TblSatuanBahan;
+import com.pocv01.Entity.TblVendor;
+import com.pocv01.model.LookupResponse;
+import com.pocv01.repository.tblActiveRepository;
+import com.pocv01.repository.tblSatuanBahanRepository;
+import com.pocv01.repository.tblVendorRepository;
+
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/catalogVendor")
 public class TblCatalogVendorController {
 
     @Autowired
     private tblCatalogVendorRepository catVenRepository;
+    
+    @Autowired
+    private tblBahanRepository bahanRepository;
+
+    @Autowired
+    private tblSatuanBahanRepository satuanRepository;
+
+    @Autowired
+    private tblVendorRepository vendorRepository;
+
+    @Autowired
+    private tblActiveRepository activeRepository;
 
     // Create new catalogVendor
     @PostMapping("/createCatalogVendor")
@@ -58,15 +83,13 @@ public class TblCatalogVendorController {
         	TblCatalogVendor catVenToUpdate = existingCatVen.get();
         	catVenToUpdate.setNamaBahan(catVen.getNamaBahan());
         	catVenToUpdate.setNamaVendor(catVen.getNamaVendor());
-        	catVenToUpdate.setNomorBahan(catVen.getNomorBahan());
-        	catVenToUpdate.setNomorVendor(catVen.getNomorVendor());
+        	catVenToUpdate.setBahanId(catVen.getBahanId());
+        	catVenToUpdate.setVendorId(catVen.getVendorId());
         	catVenToUpdate.setPricing(catVen.getPricing());
-        	catVenToUpdate.setSatuanStockBahan(catVen.getSatuanStockBahan());
+        	catVenToUpdate.setSatuanBahanId(catVen.getSatuanBahanId());
         	catVenToUpdate.setIsActive(catVen.getIsActive());
         	catVenToUpdate.setLastUpdatedDate(new java.util.Date()); // Set last updated date
         	catVenToUpdate.setLastUpdatedBy("system"); // Set the last updated by (can be current user)
-        	catVenToUpdate.setCreatedBy(catVen.getCreatedBy());
-        	catVenToUpdate.setCreatedDate(catVen.getCreatedDate());
 
             // Save the updated catalogVendor and check if the save was successful
         	TblCatalogVendor savedCatVen = catVenRepository.save(catVenToUpdate);
@@ -101,12 +124,43 @@ public class TblCatalogVendorController {
     }
 
     // POST method to get all catalogVendor
-    @PostMapping("/getAllCatalogVendor")
-    public ResponseEntity<List<TblCatalogVendor>> getAllCatalogVendor(@RequestBody Object requestBody) {
+    @GetMapping("/getAllCatalogVendor")
+    public ResponseEntity<Map<String,Object>> getAllCatalogVendor() {
         // This is a workaround to use POST for fetching data
         // The request body can be used to add any filters or additional parameters if necessary
+        
         List<TblCatalogVendor> catalogVendorList = catVenRepository.findAll();
-        return ResponseEntity.ok(catalogVendorList);
+        Map<String, Object> response = new HashMap<>();
+        response.put("data", catalogVendorList);
+
+        List<TblBahan> bahanList = bahanRepository.findAll();
+        List<LookupResponse> bahanResponse = bahanList.stream().
+        map(bahan -> new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamabahan())).
+        collect(Collectors.toList());
+
+        List<TblSatuanBahan> satuanBahanList = satuanRepository.findAll();
+        List<LookupResponse> satuanResponse = satuanBahanList.stream().
+        map(satuan -> new LookupResponse(satuan.getId(), satuan.getNamaSatuan())).
+        collect(Collectors.toList());
+
+        List<TblVendor> vendorList = vendorRepository.findAll();
+        List<LookupResponse> vendorResponse = vendorList.stream().
+        map(vendor -> new LookupResponse(vendor.getPk_vendor_id(), vendor.getNamavendor())).
+        collect(Collectors.toList());
+
+        List<TblActive> activeList = activeRepository.findAll();
+        List<LookupResponse> activeResponse = activeList.stream().
+        map(active -> new LookupResponse(active.getId(), active.getIsActiveDesc())).
+        collect(Collectors.toList());
+
+        response.put("lookup", new HashMap<String,Object>(){{
+            put("nomorbahan", bahanResponse);
+            put("satuanbahan", satuanResponse);
+            put("vendor", vendorResponse);
+            put("active", activeResponse);
+
+        }});
+        return ResponseEntity.ok(response);
     }
 
     // Get catalogVendor by ID (GET remains for ID lookup)

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/gudang")
 public class TblGudangController {
 
@@ -94,8 +95,8 @@ public class TblGudangController {
     }
 
     // POST method to get all Gudang
-    @PostMapping("/getAllGudang")
-    public ResponseEntity<List<TblGudang>> getAllGudang(@RequestBody Object requestBody) {
+    @GetMapping("/getAllGudang")
+    public ResponseEntity<List<TblGudang>> getAllGudang() {
         // This is a workaround to use POST for fetching data
         // The request body can be used to add any filters or additional parameters if necessary
         List<TblGudang> gudangList = gudangRepository.findAll();
