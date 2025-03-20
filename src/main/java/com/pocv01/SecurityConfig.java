@@ -52,6 +52,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/cabang/createCabang").permitAll()
                 .requestMatchers("/api/cabang/delete/{id}").permitAll()
                 .requestMatchers("/api/cabang/update/{id}").permitAll()
+                .requestMatchers("/api/lookup/getAllLookUp").permitAll()
+                .requestMatchers("/api/lookup/getLookupByKey").permitAll()
                 .anyRequest().authenticated() // Protect other endpoints
             .and()
             .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // Add JWT filter before UsernamePasswordAuthenticationFilter
