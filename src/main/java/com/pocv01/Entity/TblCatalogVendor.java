@@ -5,8 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
+
 import java.sql.Date;
+
+import org.hibernate.annotations.ManyToAny;
+
+import jakarta.persistence.ManyToOne;
 
     @Entity
     @Table(name = "tbl_catalogvendor")
@@ -17,26 +23,42 @@ import java.sql.Date;
         @Column(name = "pk_catalogvendor_id")
         private Long id;
 
-        @Column(name = "fk_nomorvendor")
-        private String nomorVendor;
+        @Column(name = "fk_vendor_id")
+        private Long vendorId;
+        
+        @ManyToOne
+        @JoinColumn(name="fk_vendor_id", referencedColumnName="pk_vendor_id", insertable=false, updatable=false)
+        private TblVendor vendor;
 
         @Column(name = "namavendor")
         private String namaVendor;
 
-        @Column(name = "fk_nomorbahan")
-        private String nomorBahan;
+        @Column(name = "fk_bahan_id")
+        private Long bahanId;
+
+        @ManyToOne
+        @JoinColumn(name="fk_bahan_id", referencedColumnName="pk_bahan_id", insertable=false, updatable=false)
+        private TblBahan bahan;
 
         @Column(name = "namabahan")
         private String namaBahan;
 
-        @Column(name = "fk_satuanstockbahan")
-        private String satuanStockBahan;
+        @Column(name = "fk_satuanbahan_id")
+        private Long satuanBahanId;
+
+        @ManyToOne
+        @JoinColumn(name="fk_satuanbahan_id", referencedColumnName="pk_satuanbahan_id", insertable=false, updatable=false)
+        private TblSatuanBahan satuan;
 
         @Column(name = "pricing")
         private String pricing;
 
-        @Column(name = "isactive")
-        private Boolean isActive;
+        @Column(name = "fk_active_id")
+        private Long isActive;
+
+        @ManyToOne
+        @JoinColumn(name="fk_active_id", referencedColumnName="pk_active_id", insertable=false, updatable=false)
+        private TblActive active;
 
         @Column(name = "createdby")
         private String createdBy;
@@ -73,7 +95,7 @@ import java.sql.Date;
 			this.lastUpdatedDate = lastUpdatedDate;
 		}
 
-		public void setIsActive(Boolean isActive) {
+		public void setIsActive(Long isActive) {
 			this.isActive = isActive;
 		}
 
@@ -95,12 +117,12 @@ import java.sql.Date;
             this.id = id;
         }
 
-        public String getNomorVendor() {
-            return nomorVendor;
+        public Long getVendorId() {
+            return vendorId;
         }
 
-        public void setNomorVendor(String nomorVendor) {
-            this.nomorVendor = nomorVendor;
+        public void setVendorId(Long vendorId) {
+            this.vendorId = vendorId;
         }
 
         public String getNamaVendor() {
@@ -111,14 +133,14 @@ import java.sql.Date;
             this.namaVendor = namaVendor;
         }
 
-        public String getNomorBahan() {
-            return nomorBahan;
+        public Long getBahanId() {
+            return bahanId;
         }
 
-        public void setNomorBahan(String nomorBahan) {
-            this.nomorBahan = nomorBahan;
+        public void setBahanId(Long bahanId) {
+            this.bahanId = bahanId;
         }
-
+    
         public String getNamaBahan() {
             return namaBahan;
         }
@@ -127,12 +149,12 @@ import java.sql.Date;
             this.namaBahan = namaBahan;
         }
 
-        public String getSatuanStockBahan() {
-            return satuanStockBahan;
+        public Long getSatuanBahanId() {
+            return satuanBahanId;
         }
-
-        public void setSatuanStockBahan(String satuanStockBahan) {
-            this.satuanStockBahan = satuanStockBahan;
+    
+        public void setSatuanBahanId(Long satuanBahanId) {
+            this.satuanBahanId = satuanBahanId;
         }
 
         public String getPricing() {
@@ -143,8 +165,40 @@ import java.sql.Date;
             this.pricing = pricing;
         }
 
-        public Boolean getIsActive() {
+        public Long getIsActive() {
             return isActive;
         }
+
+    public TblBahan getBahan() {
+        return bahan;
+    }
+
+    public void setBahan(TblBahan bahan) {
+        this.bahan = bahan;
+    }
+
+    public TblVendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(TblVendor vendor) {
+        this.vendor = vendor;
+    }
+
+    public TblSatuanBahan getSatuan() {
+        return satuan;
+    }
+
+    public void setSatuan(TblSatuanBahan satuan) {
+        this.satuan = satuan;
+    }
+
+    public TblActive getActive() {
+        return active;
+    }
+
+    public void setActive(TblActive active) {
+        this.active = active;
+    }
 
     }
