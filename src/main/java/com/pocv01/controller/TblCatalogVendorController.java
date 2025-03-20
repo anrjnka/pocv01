@@ -133,7 +133,7 @@ public class TblCatalogVendorController {
         Map<String, Object> response = new HashMap<>();
         response.put("data", catalogVendorList);
 
-        List<TblBahan> bahanList = bahanRepository.findAll();
+        /*List<TblBahan> bahanList = bahanRepository.findAll();
         List<LookupResponse> bahanResponse = bahanList.stream().
         map(bahan -> new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamabahan())).
         collect(Collectors.toList());
@@ -160,6 +160,7 @@ public class TblCatalogVendorController {
             put("active", activeResponse);
 
         }});
+        */
         return ResponseEntity.ok(response);
     }
 
