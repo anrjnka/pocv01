@@ -1,6 +1,5 @@
 package com.pocv01.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,7 +9,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,19 +22,12 @@ import com.pocv01.Entity.TblActive;
 import com.pocv01.Entity.TblBahan;
 import com.pocv01.Entity.TblSatuanBahan;
 import com.pocv01.Entity.TblVendor;
-import com.pocv01.model.CatalogVendor;
-import com.pocv01.model.Lookup;
 import com.pocv01.model.LookupKey;
 import com.pocv01.model.LookupResponse;
-import com.pocv01.model.User;
 import com.pocv01.repository.tblActiveRepository;
 import com.pocv01.repository.tblBahanRepository;
 import com.pocv01.repository.tblSatuanBahanRepository;
 import com.pocv01.repository.tblVendorRepository;
-import com.pocv01.service.catalogVendorService;
-import com.pocv01.service.lookupService;
-import com.pocv01.service.menuService;
-import com.pocv01.service.userService;
 
 
 
@@ -73,32 +64,34 @@ public class LookupController {
 		Map<String, Object> response = new HashMap<>();
 		Map<String, Object> responseMap = new HashMap<>();
 		
+		System.out.println(" lenght of array : "+ arrayKey.length);
 		for(String key : arrayKey) {
 			System.out.println("map :"+key);
-			if(key=="bahanList"||key.equals("bahanList")) {
+			if(key.equals("nomorbahan")) {
 				List<TblBahan> bahanList = bahanRepository.findAll();
 		        List<LookupResponse> bahanResponse = bahanList.stream().
-		        map(bahan -> new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamabahan())).
+		        map(bahan -> 
+					 new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamabahan(), bahan)).
 		        collect(Collectors.toList());
 		        responseMap.put("nomorbahan", bahanResponse);		        
-			}else if(key=="satuanBahanList"||key.equals("satuanBahanList")) {			
+			}else if(key.equals("satuanbahan")) {			
 				List<TblSatuanBahan> satuanBahanList = satuanRepository.findAll();
 		        List<LookupResponse> satuanResponse = satuanBahanList.stream().
-		        map(satuan -> new LookupResponse(satuan.getId(), satuan.getNamaSatuan())).
+		        map(satuan -> new LookupResponse(satuan.getId(), satuan.getNamaSatuan(), satuan)).
 		        collect(Collectors.toList());
-		        responseMap.put("satuanBahanList", satuanResponse);			
-			}else if(key=="vendorList"||key.equals("vendorList")){				 
+		        responseMap.put("satuanbahan", satuanResponse);			
+			}else if(key.equals("vendor")){				 
 				 List<TblVendor> vendorList = vendorRepository.findAll();
 			     List<LookupResponse> vendorResponse = vendorList.stream().
-			     map(vendor -> new LookupResponse(vendor.getPk_vendor_id(), vendor.getNamavendor())).
+			     map(vendor -> new LookupResponse(vendor.getPk_vendor_id(), vendor.getNamavendor(), vendor)).
 			     collect(Collectors.toList());
-			     responseMap.put("vendorList", vendorResponse);		     
-			}else if(key=="activeList"||key.equals("activeList")) {
+			     responseMap.put("vendor", vendorResponse);		     
+			}else if(key.equals("active")) {
 				 List<TblActive> activeList = activeRepository.findAll();
 			     List<LookupResponse> activeResponse = activeList.stream().
-			     map(active -> new LookupResponse(active.getId(), active.getIsActiveDesc())).
+			     map(active -> new LookupResponse(active.getId(), active.getIsActiveDesc(),active)).
 			     collect(Collectors.toList());
-			     responseMap.put("activeList", activeResponse);
+			     responseMap.put("active", activeResponse);
 			}else {
 				return getAllLookup();
 			}
@@ -115,22 +108,22 @@ public class LookupController {
 		
 		List<TblBahan> bahanList = bahanRepository.findAll();
         List<LookupResponse> bahanResponse = bahanList.stream().
-        map(bahan -> new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamabahan())).
+        map(bahan -> new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamabahan(),bahan)).
         collect(Collectors.toList());
 
         List<TblSatuanBahan> satuanBahanList = satuanRepository.findAll();
         List<LookupResponse> satuanResponse = satuanBahanList.stream().
-        map(satuan -> new LookupResponse(satuan.getId(), satuan.getNamaSatuan())).
+        map(satuan -> new LookupResponse(satuan.getId(), satuan.getNamaSatuan(),satuan)).
         collect(Collectors.toList());
 
         List<TblVendor> vendorList = vendorRepository.findAll();
         List<LookupResponse> vendorResponse = vendorList.stream().
-        map(vendor -> new LookupResponse(vendor.getPk_vendor_id(), vendor.getNamavendor())).
+        map(vendor -> new LookupResponse(vendor.getPk_vendor_id(), vendor.getNamavendor(),vendor)).
         collect(Collectors.toList());
 
         List<TblActive> activeList = activeRepository.findAll();
         List<LookupResponse> activeResponse = activeList.stream().
-        map(active -> new LookupResponse(active.getId(), active.getIsActiveDesc())).
+        map(active -> new LookupResponse(active.getId(), active.getIsActiveDesc(),active)).
         collect(Collectors.toList());
 
         response.put("lookup", new HashMap<String,Object>(){{
@@ -141,6 +134,7 @@ public class LookupController {
 
         }});
         return ResponseEntity.ok(response);
+		// return null;
     }
 	
 	

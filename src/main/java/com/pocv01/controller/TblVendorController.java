@@ -57,6 +57,7 @@ public class TblVendorController {
         try {
         	TblVendor vendorToUpdate = existingVendor.get();
             vendorToUpdate.setNamavendor(vendor.getNamavendor());
+            vendorToUpdate.setCodevendor(vendor.getCodevendor());
             vendorToUpdate.setNoidentitasvendor(vendor.getNoidentitasvendor());
             vendorToUpdate.setAlamatvendor(vendor.getAlamatvendor());
             vendorToUpdate.setNamasales(vendor.getNamasales());
