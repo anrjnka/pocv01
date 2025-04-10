@@ -56,7 +56,6 @@ public class TblGudangController {
         try {
         	TblGudang gudangToUpdate = existingGudang.get();
             gudangToUpdate.setNamagudang(gudang.getNamagudang());
-            gudangToUpdate.setCodeGudang(gudang.getCodeGudang());
             gudangToUpdate.setJenisgudang(gudang.getJenisgudang());
             gudangToUpdate.setCabanggudang(gudang.getCabanggudang());
             gudangToUpdate.setIsactive(gudang.getIsactive());
