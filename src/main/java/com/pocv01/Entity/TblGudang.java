@@ -15,9 +15,6 @@ public class TblGudang {
     @jakarta.validation.constraints.NotBlank(message = "Nama Gudang cannot be empty")
     private String namagudang;
 
-	@jakarta.validation.constraints.NotBlank(message = "Code Gudang cannot be empty")
-    private String codegudang;
-
     private String jenisgudang;
     private String cabanggudang;
     private Boolean isactive;
@@ -35,10 +32,6 @@ public class TblGudang {
         return namagudang;
     }
 
-	public String getCodeGudang(){
-		return codegudang;
-	}
-
     public Long getPk_gudang_id() {
 		return pk_gudang_id;
 	}
@@ -51,10 +44,6 @@ public class TblGudang {
 	    public void setNamagudang(String namagudang) {
 	        this.namagudang = namagudang;
 	    }
-
-		public void setCodeGudang(String codegudang){
-			this.codegudang = codegudang;
-		}
 
 	    public String getJenisgudang() {
 	        return jenisgudang;

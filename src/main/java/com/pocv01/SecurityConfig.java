@@ -55,6 +55,16 @@ public class SecurityConfig {
                 .requestMatchers("/api/cabang/update/{id}").permitAll()
                 .requestMatchers("/api/lookup/getAllLookUp").permitAll()
                 .requestMatchers("/api/lookup/getLookupByKey").permitAll()
+                .requestMatchers("/api/purchasing/getAllPurchasing").permitAll()
+                .requestMatchers("/api/purchasing/getPurchasing/{id}").permitAll()
+                .requestMatchers("/api/purchasing/createPurchasing").permitAll()
+                .requestMatchers("/api/purchasing/delete/{id}").permitAll()
+                .requestMatchers("/api/purchasing/update/{id}").permitAll()
+                .requestMatchers("/api/purchasingDetail/getAllPurchasingDetail").permitAll()
+                .requestMatchers("/api/purchasingDetail/getPurchasingDetail/{id}").permitAll()
+                .requestMatchers("/api/purchasingDetail/createPurchasingDetail").permitAll()
+                .requestMatchers("/api/purchasingDetail/delete/{id}").permitAll()
+                .requestMatchers("/api/purchasingDetail/update/{id}").permitAll()
                 .anyRequest().authenticated() // Protect other endpoints
             .and()
             .addFilterBefore(new JWTAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class); // Add JWT filter before UsernamePasswordAuthenticationFilter

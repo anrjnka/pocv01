@@ -6,8 +6,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
+import java.sql.Date;
+
+import org.hibernate.annotations.ManyToAny;
+
+import jakarta.persistence.ManyToOne;
 
     @Entity
     @Table(name = "tbl_catalogvendor")
@@ -25,12 +30,18 @@ import jakarta.persistence.Table;
         @JoinColumn(name="fk_vendor_id", referencedColumnName="pk_vendor_id", insertable=false, updatable=false)
         private TblVendor vendor;
 
+        @Column(name = "namavendor")
+        private String namaVendor;
+
         @Column(name = "fk_bahan_id")
         private Long bahanId;
 
         @ManyToOne
         @JoinColumn(name="fk_bahan_id", referencedColumnName="pk_bahan_id", insertable=false, updatable=false)
         private TblBahan bahan;
+
+        @Column(name = "namabahan")
+        private String namaBahan;
 
         @Column(name = "fk_satuanbahan_id")
         private Long satuanBahanId;
@@ -40,7 +51,7 @@ import jakarta.persistence.Table;
         private TblSatuanBahan satuan;
 
         @Column(name = "pricing")
-        private Long pricing;
+        private String pricing;
 
         @Column(name = "fk_active_id")
         private Long isActive;
@@ -114,12 +125,28 @@ import jakarta.persistence.Table;
             this.vendorId = vendorId;
         }
 
+        public String getNamaVendor() {
+            return namaVendor;
+        }
+
+        public void setNamaVendor(String namaVendor) {
+            this.namaVendor = namaVendor;
+        }
+
         public Long getBahanId() {
             return bahanId;
         }
 
         public void setBahanId(Long bahanId) {
             this.bahanId = bahanId;
+        }
+    
+        public String getNamaBahan() {
+            return namaBahan;
+        }
+
+        public void setNamaBahan(String namaBahan) {
+            this.namaBahan = namaBahan;
         }
 
         public Long getSatuanBahanId() {
@@ -130,11 +157,11 @@ import jakarta.persistence.Table;
             this.satuanBahanId = satuanBahanId;
         }
 
-        public Long getPricing() {
+        public String getPricing() {
             return pricing;
         }
 
-        public void setPricing(Long pricing) {
+        public void setPricing(String pricing) {
             this.pricing = pricing;
         }
 
