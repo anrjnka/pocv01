@@ -12,7 +12,7 @@ public class TblVendor {
 
     @jakarta.validation.constraints.NotBlank(message = "Nama Vendor cannot be empty")
     private String namavendor;
-
+    private String codevendor;
     private String noidentitasvendor;
     private String alamatvendor;
     private String namasales;
@@ -113,5 +113,13 @@ public class TblVendor {
 
     public void setLastupdateddate(Date lastupdateddate) {
         this.lastupdateddate = lastupdateddate;
+    }
+
+    public String getCodevendor() {
+        return codevendor;
+    }
+
+    public void setCodevendor(String codevendor) {
+        this.codevendor = codevendor;
     }
 }

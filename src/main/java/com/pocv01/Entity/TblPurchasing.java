@@ -1,8 +1,15 @@
 package com.pocv01.Entity;
 
-import jakarta.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tbl_purchasing")
@@ -19,8 +26,16 @@ public class TblPurchasing {
     @Column(name = "fk_vendor_id")
     private Long fkVendorId;
 
-    @Column(name = "status")
-    private String status;
+    @ManyToOne
+    @JoinColumn(name="fk_vendor_id", referencedColumnName="pk_vendor_id", insertable=false, updatable=false)
+    private TblVendor vendor;
+
+    @Column(name = "fk_status_id")
+    private Long fkStatusId;
+
+    @ManyToOne
+    @JoinColumn(name="fk_status_id", referencedColumnName="pk_status_id", insertable=false, updatable=false)
+    private TblStatus status;
 
     @Column(name = "isactive")
     private Boolean isactive;
@@ -61,12 +76,12 @@ public class TblPurchasing {
         this.fkVendorId = fkVendorId;
     }
 
-    public String getStatus() {
-        return status;
+    public Long getFkStatusId() {
+        return fkStatusId;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setFkStatusId(Long fkStatusId) {
+        this.fkStatusId = fkStatusId;
     }
 
     public Boolean getIsactive() {
@@ -84,8 +99,6 @@ public class TblPurchasing {
     public void setCreatedby(String createdby) {
         this.createdby = createdby;
     }
-
-   
 
     public Date getCreateddate() {
 		return createddate;
@@ -110,6 +123,22 @@ public class TblPurchasing {
 	public void setLastupdateddate(Date lastupdateddate) {
 		this.lastupdateddate = lastupdateddate;
 	}
+
+    public TblVendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(TblVendor vendor) {
+        this.vendor = vendor;
+    }
+
+    public TblStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(TblStatus status) {
+        this.status = status;
+    }
 
    
 } 

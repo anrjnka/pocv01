@@ -1,17 +1,24 @@
 package com.pocv01.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.pocv01.Entity.TblGudang;
 import com.pocv01.model.Response;
 import com.pocv01.repository.tblGudangRepository;
-
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -26,8 +33,8 @@ public class TblGudangController {
     public ResponseEntity<Response> createGudang(@jakarta.validation.Valid @RequestBody TblGudang gudang) {
     	Response result = new Response();
     	 try {
-    	gudang.setCreateddate(new java.util.Date()); // Set created date to now
-        gudang.setCreatedby("system"); // Set createdby as "system" or current user
+    	gudang.setCreatedDate(new java.util.Date()); // Set created date to now
+        gudang.setCreatedBy("system"); // Set createdby as "system" or current user
        
         
         if (ResponseEntity.ok(gudangRepository.save(gudang))!=null) {
@@ -55,12 +62,13 @@ public class TblGudangController {
 
         try {
         	TblGudang gudangToUpdate = existingGudang.get();
-            gudangToUpdate.setNamagudang(gudang.getNamagudang());
-            gudangToUpdate.setJenisgudang(gudang.getJenisgudang());
-            gudangToUpdate.setCabanggudang(gudang.getCabanggudang());
-            gudangToUpdate.setIsactive(gudang.getIsactive());
-            gudangToUpdate.setLastupdateddate(new java.util.Date()); // Set last updated date
-            gudangToUpdate.setLastupdatedby("system"); // Set the last updated by (can be current user)
+            gudangToUpdate.setNamaGudang(gudang.getNamaGudang());
+            gudangToUpdate.setJenisGudangId(gudang.getJenisGudangId());
+            gudangToUpdate.setCabangId(gudang.getCabangId());
+            gudangToUpdate.setCodeGudang(gudang.getCodeGudang());
+            gudangToUpdate.setActiveId(gudang.getActiveId());
+            gudangToUpdate.setLastupdatedDate(new java.util.Date()); // Set last updated date
+            gudangToUpdate.setLastupdatedBy("system"); // Set the last updated by (can be current user)
 
             // Save the updated Gudang and check if the save was successful
             TblGudang savedGudang = gudangRepository.save(gudangToUpdate);

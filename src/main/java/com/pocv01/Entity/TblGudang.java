@@ -3,101 +3,168 @@ package com.pocv01.Entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "tbl_gudang")
 public class TblGudang {
 
-    @jakarta.persistence.Id
-    @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private Long pk_gudang_id;
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "pk_gudang_id")
+    private Long id;
 
-    @jakarta.validation.constraints.NotBlank(message = "Nama Gudang cannot be empty")
-    private String namagudang;
+	@Column(name = "namagudang")
+    private String namaGudang;
+	
+	@Column(name = "codegudang")
+	private String codeGudang;
+	
+	@Column(name = "fk_jenisgudang_id")
+    private Long jenisGudangId;
+	
+	@ManyToOne
+    @JoinColumn(name="fk_jenisgudang_id", referencedColumnName="pk_jenisgudang_id", insertable=false, updatable=false)
+    private TblJenisGudang jenisGudang;
 
-    private String jenisgudang;
-    private String cabanggudang;
-    private Boolean isactive;
+	@Column(name = "fk_cabang_id")
+    private Long cabangId;
 
-    private String createdby;
-    private Date createddate;
+	@ManyToOne
+    @JoinColumn(name="fk_cabang_id", referencedColumnName="pk_cabang_id", insertable=false, updatable=false)
+    private TblCabang cabangGudang;
+	
+	@Column(name = "fk_active_id")
+    private Long activeId;
 
-    private String lastupdatedby;
-    private Date lastupdateddate;
+	@ManyToOne
+	@JoinColumn(name="fk_active_id", referencedColumnName="pk_active_id", insertable=false, updatable=false)
+	private TblActive active;
+
+	@Column(name = "createdby")
+    private String createdBy;
+
+	@Column(name = "createddate")
+    private Date createdDate;
+
+	@Column(name = "lastupdatedby")
+    private String lastupdatedBy;
+	
+	@Column(name = "lastupdateddate")
+    private Date lastupdatedDate;
 
     // Getters and Setters
-    
 
-    public String getNamagudang() {
-        return namagudang;
+    public Long getId() {
+        return id;
     }
 
-    public Long getPk_gudang_id() {
-		return pk_gudang_id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setPk_gudang_id(Long pk_gudang_id) {
-		this.pk_gudang_id = pk_gudang_id;
-	}
+    public String getNamaGudang() {
+        return namaGudang;
+    }
 
+    public void setNamaGudang(String namaGudang) {
+        this.namaGudang = namaGudang;
+    }
 
-	    public void setNamagudang(String namagudang) {
-	        this.namagudang = namagudang;
-	    }
+    public String getCodeGudang() {
+        return codeGudang;
+    }
 
-	    public String getJenisgudang() {
-	        return jenisgudang;
-	    }
+    public void setCodeGudang(String codeGudang) {
+        this.codeGudang = codeGudang;
+    }
 
-	    public void setJenisgudang(String jenisgudang) {
-	        this.jenisgudang = jenisgudang;
-	    }
+    public TblActive getActive() {
+        return active;
+    }
 
-	    public String getCabanggudang() {
-	        return cabanggudang;
-	    }
+    public void setActive(TblActive active) {
+        this.active = active;
+    }
 
-	    public void setCabanggudang(String cabanggudang) {
-	        this.cabanggudang = cabanggudang;
-	    }
+    public String getCreatedBy() {
+        return createdBy;
+    }
 
-	    public Boolean getIsactive() {
-	        return isactive;
-	    }
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
-	    public void setIsactive(Boolean isactive) {
-	        this.isactive = isactive;
-	    }
+    public Date getCreatedDate() {
+        return createdDate;
+    }
 
-	    public String getCreatedby() {
-	        return createdby;
-	    }
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
 
-	    public void setCreatedby(String createdby) {
-	        this.createdby = createdby;
-	    }
+    public String getLastupdatedBy() {
+        return lastupdatedBy;
+    }
 
-	    public Date getCreateddate() {
-	        return createddate;
-	    }
+    public void setLastupdatedBy(String lastupdatedBy) {
+        this.lastupdatedBy = lastupdatedBy;
+    }
 
-	    public void setCreateddate(Date createddate) {
-	        this.createddate = createddate;
-	    }
+    public Date getLastupdatedDate() {
+        return lastupdatedDate;
+    }
 
-	    public String getLastupdatedby() {
-	        return lastupdatedby;
-	    }
+    public void setLastupdatedDate(Date lastupdatedDate) {
+        this.lastupdatedDate = lastupdatedDate;
+    }
 
-	    public void setLastupdatedby(String lastupdatedby) {
-	        this.lastupdatedby = lastupdatedby;
-	    }
+    public Long getActiveId() {
+        return activeId;
+    }
 
-	    public Date getLastupdateddate() {
-	        return lastupdateddate;
-	    }
+    public void setActiveId(Long activeId) {
+        this.activeId = activeId;
+    }
 
-	    public void setLastupdateddate(Date lastupdateddate) {
-	        this.lastupdateddate = lastupdateddate;
-	    }
+    public Long getJenisGudangId() {
+        return jenisGudangId;
+    }
+
+    public void setJenisGudangId(Long jenisGudangId) {
+        this.jenisGudangId = jenisGudangId;
+    }
+
+    public Long getCabangId() {
+        return cabangId;
+    }
+
+    public void setCabangId(Long cabangId) {
+        this.cabangId = cabangId;
+    }
+
+    public TblJenisGudang getJenisGudang() {
+        return jenisGudang;
+    }
+
+    public void setJenisGudang(TblJenisGudang jenisGudang) {
+        this.jenisGudang = jenisGudang;
+    }
+
+    public TblCabang getCabangGudang() {
+        return cabangGudang;
+    }
+
+    public void setCabangGudang(TblCabang cabangGudang) {
+        this.cabangGudang = cabangGudang;
+    }
+    
+    
 	}
