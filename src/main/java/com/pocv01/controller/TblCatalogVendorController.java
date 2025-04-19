@@ -1,28 +1,26 @@
 package com.pocv01.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.pocv01.Entity.TblCatalogVendor;
-import com.pocv01.App;
-import com.pocv01.Entity.TblBahan;
 import com.pocv01.model.Response;
-import com.pocv01.repository.tblCatalogVendorRepository;
-import com.pocv01.repository.tblBahanRepository;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import com.pocv01.Entity.TblActive;
-import com.pocv01.Entity.TblSatuanBahan;
-import com.pocv01.Entity.TblVendor;
-import com.pocv01.model.LookupResponse;
 import com.pocv01.repository.tblActiveRepository;
+import com.pocv01.repository.tblBahanRepository;
+import com.pocv01.repository.tblCatalogVendorRepository;
 import com.pocv01.repository.tblSatuanBahanRepository;
 import com.pocv01.repository.tblVendorRepository;
 
@@ -125,13 +123,14 @@ public class TblCatalogVendorController {
 
     // POST method to get all catalogVendor
     @GetMapping("/getAllCatalogVendor")
-    public ResponseEntity<Map<String,Object>> getAllCatalogVendor() {
+    // public ResponseEntity<Map<String,Object>> getAllCatalogVendor() {
+    public ResponseEntity<List<TblCatalogVendor>> getAllCatalogVendor() {
         // This is a workaround to use POST for fetching data
         // The request body can be used to add any filters or additional parameters if necessary
         
         List<TblCatalogVendor> catalogVendorList = catVenRepository.findAll();
-        Map<String, Object> response = new HashMap<>();
-        response.put("data", catalogVendorList);
+        // Map<String, Object> response = new HashMap<>();
+        // response.put("data", catalogVendorList);
 
         /*List<TblBahan> bahanList = bahanRepository.findAll();
         List<LookupResponse> bahanResponse = bahanList.stream().
@@ -161,7 +160,8 @@ public class TblCatalogVendorController {
 
         }});
         */
-        return ResponseEntity.ok(response);
+        // return ResponseEntity.ok(response);
+        return ResponseEntity.ok(catalogVendorList);
     }
 
     // Get catalogVendor by ID (GET remains for ID lookup)
