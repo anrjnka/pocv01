@@ -1,17 +1,24 @@
 package com.pocv01.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.pocv01.Entity.TblBahan;
 import com.pocv01.model.Response;
 import com.pocv01.repository.tblBahanRepository;
-
-
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -59,12 +66,12 @@ public class TblBahanController {
         TblBahan bahanToUpdate = existingBahan.get();
         bahanToUpdate.setCodebahan(bahan.getCodebahan());
         bahanToUpdate.setNamabahan(bahan.getNamabahan());
-        bahanToUpdate.setPackingbesar(bahan.getPackingbesar());
-        bahanToUpdate.setPackingsatuan(bahan.getPackingsatuan());
-        bahanToUpdate.setPackingdetail(bahan.getPackingdetail());
+        bahanToUpdate.setFk_satuanbesar_id(bahan.getFk_satuanbesar_id());
+        bahanToUpdate.setFk_satuan_id(bahan.getFk_satuan_id());
+        bahanToUpdate.setFk_satuandetail_id(bahan.getFk_satuandetail_id());
         bahanToUpdate.setJumlah(bahan.getJumlah());
         bahanToUpdate.setDeskripsi(bahan.getDeskripsi());
-        bahanToUpdate.setIsactive(bahan.getIsactive());
+        bahanToUpdate.setFk_active_id(bahan.getFk_active_id());
         bahanToUpdate.setLastupdateddate(new java.util.Date()); // Update last updated date
         bahanToUpdate.setLastupdatedby(bahan.getLastupdatedby()); // Set the last updated by (can be the current user)
         
