@@ -3,6 +3,8 @@ package com.pocv01.Entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
+
 @jakarta.persistence.Entity
 public class TblVendor {
 
@@ -10,28 +12,41 @@ public class TblVendor {
     @jakarta.persistence.GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long pk_vendor_id;
 
+    @Column(name = "namavendor")
     @jakarta.validation.constraints.NotBlank(message = "Nama Vendor cannot be empty")
-    private String namavendor;
-    private String codevendor;
-    private String noidentitasvendor;
-    private String alamatvendor;
-    private String namasales;
-    private String notelepon;
-    private Boolean isactive;
-
-    private String createdby;
-    private Date createddate;
-
-    private String lastupdatedby;
-    private Date lastupdateddate;
-
-    // Getters and Setters
+    private String namaVendor;
     
-    public String getNamavendor() {
-        return namavendor;
-    }
+    @Column(name = "codevendor")
+    private String codeVendor;
+    
+    @Column(name = "noidentitasvendor")
+    private String noidentitasvendor;
+    
+    @Column(name = "alamatvendor")
+    private String alamatVendor;
+    
+    @Column(name = "namasales")
+    private String namaSales;
+    
+    @Column(name = "notelepon")
+    private String noTelepon;
+    
+    @Column(name = "fk_active_id")
+    private Boolean isActive;
 
-    public Long getPk_vendor_id() {
+    @Column(name = "createdby")
+    private String createdBy;
+    
+    @Column(name = "createddate")
+    private Date createdDate;
+
+    @Column(name = "lastupdatedby")
+    private String lastUpdatedBy;
+    
+    @Column(name = "lastupdateddate")
+    private Date lastUpdatedDate;
+
+	public Long getPk_vendor_id() {
 		return pk_vendor_id;
 	}
 
@@ -39,87 +54,94 @@ public class TblVendor {
 		this.pk_vendor_id = pk_vendor_id;
 	}
 
-	public void setNamavendor(String namavendor) {
-        this.namavendor = namavendor;
-    }
+	public String getNamaVendor() {
+		return namaVendor;
+	}
 
-    public String getNoidentitasvendor() {
-        return noidentitasvendor;
-    }
+	public void setNamaVendor(String namaVendor) {
+		this.namaVendor = namaVendor;
+	}
 
-    public void setNoidentitasvendor(String noidentitasvendor) {
-        this.noidentitasvendor = noidentitasvendor;
-    }
+	public String getCodeVendor() {
+		return codeVendor;
+	}
 
-    public String getAlamatvendor() {
-        return alamatvendor;
-    }
+	public void setCodeVendor(String codeVendor) {
+		this.codeVendor = codeVendor;
+	}
 
-    public void setAlamatvendor(String alamatvendor) {
-        this.alamatvendor = alamatvendor;
-    }
+	public String getNoidentitasvendor() {
+		return noidentitasvendor;
+	}
 
-    public String getNamasales() {
-        return namasales;
-    }
+	public void setNoidentitasvendor(String noidentitasvendor) {
+		this.noidentitasvendor = noidentitasvendor;
+	}
 
-    public void setNamasales(String namasales) {
-        this.namasales = namasales;
-    }
+	public String getAlamatVendor() {
+		return alamatVendor;
+	}
 
-    public String getNotelepon() {
-        return notelepon;
-    }
+	public void setAlamatVendor(String alamatVendor) {
+		this.alamatVendor = alamatVendor;
+	}
 
-    public void setNotelepon(String notelepon) {
-        this.notelepon = notelepon;
-    }
+	public String getNamaSales() {
+		return namaSales;
+	}
 
-    public Boolean getIsactive() {
-        return isactive;
-    }
+	public void setNamaSales(String namaSales) {
+		this.namaSales = namaSales;
+	}
 
-    public void setIsactive(Boolean isactive) {
-        this.isactive = isactive;
-    }
+	public String getNoTelepon() {
+		return noTelepon;
+	}
 
-    public String getCreatedby() {
-        return createdby;
-    }
+	public void setNoTelepon(String noTelepon) {
+		this.noTelepon = noTelepon;
+	}
 
-    public void setCreatedby(String createdby) {
-        this.createdby = createdby;
-    }
+	public Boolean getIsActive() {
+		return isActive;
+	}
 
-    public Date getCreateddate() {
-        return createddate;
-    }
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
 
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
-    }
+	public String getCreatedBy() {
+		return createdBy;
+	}
 
-    public String getLastupdatedby() {
-        return lastupdatedby;
-    }
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
 
-    public void setLastupdatedby(String lastupdatedby) {
-        this.lastupdatedby = lastupdatedby;
-    }
+	public Date getCreatedDate() {
+		return createdDate;
+	}
 
-    public Date getLastupdateddate() {
-        return lastupdateddate;
-    }
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
 
-    public void setLastupdateddate(Date lastupdateddate) {
-        this.lastupdateddate = lastupdateddate;
-    }
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
+	}
 
-    public String getCodevendor() {
-        return codevendor;
-    }
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
+	}
 
-    public void setCodevendor(String codevendor) {
-        this.codevendor = codevendor;
-    }
+	public Date getLastUpdatedDate() {
+		return lastUpdatedDate;
+	}
+
+	public void setLastUpdatedDate(Date lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
+	}
+
+    // Getters and Setters
+    
 }

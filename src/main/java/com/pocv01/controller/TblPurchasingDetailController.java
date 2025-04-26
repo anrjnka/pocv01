@@ -25,8 +25,8 @@ public class TblPurchasingDetailController {
     public ResponseEntity<Response> createJenisGudang(@jakarta.validation.Valid @RequestBody TblPurchasingDetail tbl) {
     	Response result = new Response();
     	 try {
-    		 tbl.setCreateddate(new java.util.Date()); // Set created date to now
-    		 tbl.setCreatedby("system"); // Set createdby as "system" or current user
+    		 tbl.setCreatedDate(new java.util.Date()); // Set created date to now
+    		 tbl.setCreatedBy("system"); // Set createdby as "system" or current user
        
         
         if (ResponseEntity.ok(tblRepository.save(tbl))!=null) {
@@ -56,11 +56,11 @@ public class TblPurchasingDetailController {
         	TblPurchasingDetail tblToUpdate = existingTbl.get();
         	tblToUpdate.setFkCatalogVendorId(tbl.getFkCatalogVendorId());
         	tblToUpdate.setFkPurchasingId(tbl.getFkPurchasingId());
-        	tblToUpdate.setIsactive(tbl.getIsactive());
+        	tblToUpdate.setIsActive(tbl.getIsActive());
         	tblToUpdate.setJumlah(tbl.getJumlah());
         	tblToUpdate.setPkPurchasingDetailId(tbl.getPkPurchasingDetailId());
-        	tblToUpdate.setLastupdateddate(new java.util.Date()); // Set last updated date
-        	tblToUpdate.setLastupdatedby("system"); // Set the last updated by (can be current user)
+        	tblToUpdate.setLastUpdatedDate(new java.util.Date()); // Set last updated date
+        	tblToUpdate.setLastUpdatedBy("system"); // Set the last updated by (can be current user)
 
             // Save the updated catalogVendor and check if the save was successful
         	TblPurchasingDetail savedTbl = tblRepository.save(tblToUpdate);

@@ -25,20 +25,24 @@ public class TblPurchasingDetail {
     @Column(name = "jumlah")
     private Long jumlah;
 
-    @Column(name = "isactive")
-    private Boolean isactive;
+    @Column(name = "fk_active_id")
+    private Long isActive;
+
+    @ManyToOne
+    @JoinColumn(name="fk_active_id", referencedColumnName="pk_active_id", insertable=false, updatable=false)
+    private TblActive active;
 
     @Column(name = "createdby")
-    private String createdby;
+    private String createdBy;
 
     @Column(name = "createddate")
-    private Date createddate;
+    private Date createdDate;
 
     @Column(name = "lastupdatedby")
-    private String lastupdatedby;
+    private String lastUpdatedBy;
 
-    @Column(name = "lastupdateddate")
-    private Date lastupdateddate;
+    @Column(name = "lastUpdatedDate")
+    private Date lastUpdatedDate;
 
 	public Long getPkPurchasingDetailId() {
 		return pkPurchasingDetailId;
@@ -72,45 +76,47 @@ public class TblPurchasingDetail {
 		this.jumlah = jumlah;
 	}
 
-	public Boolean getIsactive() {
-		return isactive;
+	public Long getIsActive() {
+		return isActive;
 	}
 
-	public void setIsactive(Boolean isactive) {
-		this.isactive = isactive;
+	public void setIsActive(Long isActive) {
+		this.isActive = isActive;
 	}
 
-	public String getCreatedby() {
-		return createdby;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setCreatedby(String createdby) {
-		this.createdby = createdby;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
-	public Date getCreateddate() {
-		return createddate;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setCreateddate(Date createddate) {
-		this.createddate = createddate;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
-	public String getLastupdatedby() {
-		return lastupdatedby;
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
 	}
 
-	public void setLastupdatedby(String lastupdatedby) {
-		this.lastupdatedby = lastupdatedby;
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
 	}
 
-	public Date getLastupdateddate() {
-		return lastupdateddate;
+	public Date getLastUpdatedDate() {
+		return lastUpdatedDate;
 	}
 
-	public void setLastupdateddate(Date lastupdateddate) {
-		this.lastupdateddate = lastupdateddate;
+	public void setLastUpdatedDate(Date lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
 	}
+
+	
     
     
 }

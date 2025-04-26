@@ -20,6 +20,8 @@ import com.pocv01.Entity.TblPurchasing;
 import com.pocv01.model.Response;
 import com.pocv01.repository.tblPurchasingRepository;
 
+import jakarta.validation.Valid;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api/purchasing")
@@ -30,25 +32,33 @@ public class TblPurchasingController {
 
     // Create new jenis gudang
     @PostMapping("/createPurchasing")
-    public ResponseEntity<Response> createJenisGudang(@jakarta.validation.Valid @RequestBody TblPurchasing tbl) {
+    //public ResponseEntity<Response> createJenisGudang(@jakarta.validation.Valid @RequestBody TblPurchasing tbl) {
+    public ResponseEntity<TblPurchasing> createJenisGudang(@jakarta.validation.Valid @RequestBody TblPurchasing tbl) {
     	Response result = new Response();
-    	 try {
-    		 tbl.setCreateddate(new java.util.Date()); // Set created date to now
-    		 tbl.setCreatedby("system"); // Set createdby as "system" or current user
+    	 
+    		 tbl.setCreatedDate(new java.util.Date()); // Set created date to now
+    		 tbl.setCreatedBy("system"); // Set createdby as "system" or current user
        
-        
-        if (ResponseEntity.ok(tblRepository.save(tbl))!=null) {
+    		// Save to DB
+             TblPurchasing saved = tblRepository.save(tbl);
+
+             // Return inserted object with HTTP 201 Created
+             return new ResponseEntity<>(saved, HttpStatus.CREATED);
+             
+        /*if (ResponseEntity.ok(tblRepository.save(tbl))!=null) {
         	result.setStatus("success");
             return new ResponseEntity<>(result, HttpStatus.CREATED);
+        	return ResponseEntity.ok(tblRepository.save(tbl));
         } else {
         	result.setStatus("Failed");
-            return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+            //return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
         }
     	 } catch (Exception e) {
  			// TODO: handle exception
  			result = null;
- 			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
- 		}
+ 			//return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+ 		}*/
+    	 
     }
 
     // Update existing po
@@ -64,11 +74,11 @@ public class TblPurchasingController {
         	TblPurchasing tblToUpdate = existingTbl.get();
         	tblToUpdate.setFkVendorId(tbl.getFkVendorId());
         	tblToUpdate.setNomorPo(tbl.getNomorPo());
-        	tblToUpdate.setIsactive(tbl.getIsactive());
+        	tblToUpdate.setIsActive(tbl.getIsActive());
         	tblToUpdate.setPkPurchasingId(tbl.getPkPurchasingId());
         	tblToUpdate.setFkStatusId(tbl.getFkStatusId());
-        	tblToUpdate.setLastupdateddate(new java.util.Date()); // Set last updated date
-        	tblToUpdate.setLastupdatedby("system"); // Set the last updated by (can be current user)
+        	tblToUpdate.setLastUpdatedDate(new java.util.Date()); // Set last updated date
+        	tblToUpdate.setLastUpdatedBy("system"); // Set the last updated by (can be current user)
 
             // Save the updated catalogVendor and check if the save was successful
         	TblPurchasing savedTbl = tblRepository.save(tblToUpdate);
