@@ -2,6 +2,7 @@ package com.pocv01.Entity;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,9 @@ public class UserEntity {
 	@NotBlank(message = "UserId is required")
 	private String password;
 	
+	 @Column(name = "fk_active_id")
 	private String isActive;
+	 
 	private java.util.Date creationDate;
 	private java.util.Date modifyDate;
 	private String response;

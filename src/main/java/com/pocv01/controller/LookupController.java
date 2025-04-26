@@ -80,7 +80,7 @@ public class LookupController {
 			if(key=="nomorbahan"||key.equals("nomorbahan")) {
 				List<TblBahan> bahanList = bahanRepository.findAll();
 		        List<LookupResponse> bahanResponse = bahanList.stream().
-		        map(bahan -> new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamabahan())).
+		        map(bahan -> new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamaBahan())).
 		        collect(Collectors.toList());
 		        responseMap.put("nomorbahan", bahanResponse);		        
 			}else if(key=="satuanbahan"||key.equals("satuanbahan")) {			
@@ -92,7 +92,7 @@ public class LookupController {
 			}else if(key=="vendor"||key.equals("vendor")){				 
 				 List<TblVendor> vendorList = vendorRepository.findAll();
 			     List<LookupResponse> vendorResponse = vendorList.stream().
-			     map(vendor -> new LookupResponse(vendor.getPk_vendor_id(), vendor.getNamavendor())).
+			     map(vendor -> new LookupResponse(vendor.getPk_vendor_id(), vendor.getNamaVendor())).
 			     collect(Collectors.toList());
 			     responseMap.put("vendor", vendorResponse);		     
 			}else if(key=="active"||key.equals("active")) {
@@ -129,7 +129,7 @@ public class LookupController {
 		
 		List<TblBahan> bahanList = bahanRepository.findAll();
         List<LookupResponse> bahanResponse = bahanList.stream().
-        map(bahan -> new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamabahan())).
+        map(bahan -> new LookupResponse(bahan.getPk_bahan_id(), bahan.getNamaBahan())).
         collect(Collectors.toList());
 
         List<TblSatuanBahan> satuanBahanList = satuanRepository.findAll();
@@ -139,7 +139,7 @@ public class LookupController {
 
         List<TblVendor> vendorList = vendorRepository.findAll();
         List<LookupResponse> vendorResponse = vendorList.stream().
-        map(vendor -> new LookupResponse(vendor.getPk_vendor_id(), vendor.getNamavendor())).
+        map(vendor -> new LookupResponse(vendor.getPk_vendor_id(), vendor.getNamaVendor())).
         collect(Collectors.toList());
 
         List<TblActive> activeList = activeRepository.findAll();

@@ -36,21 +36,26 @@ public class TblPurchasing {
     @ManyToOne
     @JoinColumn(name="fk_status_id", referencedColumnName="pk_status_id", insertable=false, updatable=false)
     private TblStatus status;
+    
+    
+    @Column(name = "fk_active_id")
+    private Long isActive;
 
-    @Column(name = "isactive")
-    private Boolean isactive;
+    @ManyToOne
+    @JoinColumn(name="fk_active_id", referencedColumnName="pk_active_id", insertable=false, updatable=false)
+    private TblActive active;
 
     @Column(name = "createdby")
-    private String createdby;
+    private String createdBy;
 
     @Column(name = "createddate")
-    private Date createddate;
+    private Date createdDate;
 
     @Column(name = "lastupdatedby")
-    private String lastupdatedby;
+    private String lastUpdatedBy;
 
     @Column(name = "lastupdateddate")
-    private Date lastupdateddate;
+    private Date lastUpdatedDate;
 
     public Long getPkPurchasingId() {
         return pkPurchasingId;
@@ -84,47 +89,51 @@ public class TblPurchasing {
         this.fkStatusId = fkStatusId;
     }
 
-    public Boolean getIsactive() {
-        return isactive;
-    }
+    
 
-    public void setIsactive(Boolean isactive) {
-        this.isactive = isactive;
-    }
-
-    public String getCreatedby() {
-        return createdby;
-    }
-
-    public void setCreatedby(String createdby) {
-        this.createdby = createdby;
-    }
-
-    public Date getCreateddate() {
-		return createddate;
+    public Long getIsActive() {
+		return isActive;
 	}
 
-	public void setCreateddate(Date createddate) {
-		this.createddate = createddate;
+	public void setIsActive(Long isActive) {
+		this.isActive = isActive;
 	}
 
-	public String getLastupdatedby() {
-        return lastupdatedby;
-    }
+	
 
-    public void setLastupdatedby(String lastupdatedby) {
-        this.lastupdatedby = lastupdatedby;
-    }
-
-	public Date getLastupdateddate() {
-		return lastupdateddate;
+    public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setLastupdateddate(Date lastupdateddate) {
-		this.lastupdateddate = lastupdateddate;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
-    public TblVendor getVendor() {
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
+	}
+
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
+	}
+
+	public Date getLastUpdatedDate() {
+		return lastUpdatedDate;
+	}
+
+	public void setLastUpdatedDate(Date lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
+	}
+
+	public TblVendor getVendor() {
         return vendor;
     }
 

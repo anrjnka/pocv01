@@ -3,6 +3,7 @@ package com.pocv01.Entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,9 +15,10 @@ public class TblBahan {
     @jakarta.persistence.Id
     @jakarta.persistence.GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pk_bahan_id;
-
+    
+    @Column(name = "namabahan")
     @NotBlank(message = "Nama Bahan cannot be empty")
-    private String namabahan;
+    private String namaBahan;
 
     private Long fk_satuanbesar_id;
 	@ManyToOne
@@ -32,17 +34,32 @@ public class TblBahan {
 	@ManyToOne
 	@JoinColumn(name="fk_satuandetail_id", referencedColumnName="pk_satuanbahan_id", insertable=false, updatable=false)
     private TblSatuanBahan packingdetail;
-    private String codebahan;
-    private Integer jumlah;
+    
+	@Column(name = "codebahan")
+	private String codeBahan;
+    
+	@Column(name = "jumlah")
+	private Integer jumlah;
+	
+	@Column(name = "deskripsi")
 	private String deskripsi;
-    private Long fk_active_id;
+    
+	private Long fk_active_id;
 	@ManyToOne
 	@JoinColumn(name="fk_active_id", referencedColumnName="pk_active_id", insertable=false, updatable=false)
 	private TblActive active;
-    private String createdby;
-    private Date createddate;
-    private String lastupdatedby;
-    private Date lastupdateddate;
+    
+	@Column(name = "createdby")
+	private String createdBy;
+    
+	@Column(name = "createddate")
+	private Date createdDate;
+    
+	@Column(name = "lastupdatedby")
+	private String lastUpdatedBy;
+    
+	@Column(name = "lastupdateddate")
+	private Date lastUpdatedDate;
 
     // Getters and Setters
 
@@ -55,12 +72,12 @@ public class TblBahan {
 		this.pk_bahan_id = pk_bahan_id;
 	}
 	
-    public String getNamabahan() {
-        return namabahan;
+    public String getNamaBahan() {
+        return namaBahan;
     }
 
-    public void setNamabahan(String namabahan) {
-        this.namabahan = namabahan;
+    public void setNamaBahan(String namaBahan) {
+        this.namaBahan = namaBahan;
     }
 
     public Integer getJumlah() {
@@ -79,44 +96,44 @@ public class TblBahan {
         this.deskripsi = deskripsi;
     }
 
-    public String getCreatedby() {
-        return createdby;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreatedby(String createdby) {
-        this.createdby = createdby;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public Date getCreateddate() {
-        return createddate;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreateddate(Date createddate) {
-        this.createddate = createddate;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public String getLastupdatedby() {
-        return lastupdatedby;
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
     }
 
-    public void setLastupdatedby(String lastupdatedby) {
-        this.lastupdatedby = lastupdatedby;
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
     }
 
-    public Date getLastupdateddate() {
-        return lastupdateddate;
+    public Date getLastUpdatedDate() {
+        return lastUpdatedDate;
     }
 
-    public void setLastupdateddate(Date lastupdateddate) {
-        this.lastupdateddate = lastupdateddate;
+    public void setLastUpdatedDate(Date lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
     }
 
-    public String getCodebahan() {
-        return codebahan;
+    public String getCodeBahan() {
+        return codeBahan;
     }
 
-    public void setCodebahan(String codebahan) {
-        this.codebahan = codebahan;
+    public void setCodeBahan(String codeBahan) {
+        this.codeBahan = codeBahan;
     }
 
     public TblActive getActive() {

@@ -33,8 +33,8 @@ public class TblVendorController {
     public ResponseEntity<Response> createVendor(@jakarta.validation.Valid @RequestBody TblVendor vendor) {
     	Response result = new Response();
     	try {
-    	vendor.setCreateddate(new java.util.Date()); // Set created date to now
-        vendor.setCreatedby("system"); // Set createdby as "system" or current user
+    	vendor.setCreatedDate(new java.util.Date()); // Set created date to now
+        vendor.setCreatedBy("system"); // Set createdby as "system" or current user
         
         
         if (ResponseEntity.ok(vendorRepository.save(vendor))!=null) {
@@ -63,15 +63,15 @@ public class TblVendorController {
 
         try {
         	TblVendor vendorToUpdate = existingVendor.get();
-            vendorToUpdate.setNamavendor(vendor.getNamavendor());
-            vendorToUpdate.setCodevendor(vendor.getCodevendor());
+            vendorToUpdate.setNamaVendor(vendor.getNamaVendor());
+            vendorToUpdate.setCodeVendor(vendor.getCodeVendor());
             vendorToUpdate.setNoidentitasvendor(vendor.getNoidentitasvendor());
-            vendorToUpdate.setAlamatvendor(vendor.getAlamatvendor());
-            vendorToUpdate.setNamasales(vendor.getNamasales());
-            vendorToUpdate.setNotelepon(vendor.getNotelepon());
-            vendorToUpdate.setIsactive(vendor.getIsactive());
-            vendorToUpdate.setLastupdateddate(new java.util.Date()); // Set last updated date
-            vendorToUpdate.setLastupdatedby("system"); // Set the last updated by (can be current user)
+            vendorToUpdate.setAlamatVendor(vendor.getAlamatVendor());
+            vendorToUpdate.setNamaSales(vendor.getNamaSales());
+            vendorToUpdate.setNoTelepon(vendor.getNoTelepon());
+            vendorToUpdate.setIsActive(vendor.getIsActive());
+            vendorToUpdate.setLastUpdatedDate(new java.util.Date()); // Set last updated date
+            vendorToUpdate.setLastUpdatedBy("system"); // Set the last updated by (can be current user)
 
             // Save the updated Vendor and check if the save was successful
             TblVendor savedVendor = vendorRepository.save(vendorToUpdate);
