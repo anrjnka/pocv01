@@ -21,14 +21,18 @@ public class TblApprovalDTO {
     private String moduleModuleName;
     private String moduleDesc;
     private String tblName;
+    
+    //Tbl_status
+    private String namaStatus;
 
-    // Constructor matching the query result (order must be the same)
+  
+	// Constructor matching the query result (order must be the same)
     public TblApprovalDTO(
         Long id, String moduleName, Long fkModuleId, Long fkModulerowid, 
         String reviewNotes, String reviewBy, Long fkStatusId, 
         Long isActive, String createdBy, Date createdDate, 
         String lastUpdatedBy, Date lastUpdatedDate, 
-        String moduleModuleName, String moduleDesc, String tableName
+        String moduleModuleName, String moduleDesc, String tableName, String namaStatus
     ) {
         this.id = id;
         this.moduleName = moduleName;
@@ -44,7 +48,8 @@ public class TblApprovalDTO {
         this.lastUpdatedDate = lastUpdatedDate;
         this.moduleModuleName = moduleModuleName;
         this.moduleDesc = moduleDesc;
-        this.tblName = tblName;
+        this.tblName = tableName;
+        this.namaStatus = namaStatus;
     }
 
     // Getters and Setters
@@ -92,4 +97,14 @@ public class TblApprovalDTO {
 
     public String getTblName() { return tblName; }
     public void setTblName(String tblName) { this.tblName = tblName; }
+
+	public String getNamaStatus() {
+		return namaStatus;
+	}
+
+	public void setNamaStatus(String namaStatus) {
+		this.namaStatus = namaStatus;
+	}
+    
+    
 }
